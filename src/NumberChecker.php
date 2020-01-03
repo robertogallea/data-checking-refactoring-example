@@ -6,16 +6,19 @@ namespace App;
 
 class NumberChecker
 {
+    private array $checks = [
+        IsDivisibleBy2::class,
+        ContainsZeros::class,
+        IsNegative::class,
+        HasFourDigits::class
+    ];
+
     public function execute($number): bool
     {
-        if ((new IsDivisibleBy2())->check($number)) {
-            return false;
-        } elseif ((new ContainsZeros())->check($number)) {
-            return false;
-        } elseif ((new IsNegative())->check($number)) {
-            return false;
-        } elseif ((new HasFourDigits())->check($number)) {
-            return false;
+        foreach ($this->checks as $check) {
+            if ((new $check)->check($number)) {
+                return false;
+            }
         }
 
         return true;
