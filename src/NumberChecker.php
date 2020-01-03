@@ -8,16 +8,36 @@ class NumberChecker
 {
     public function execute($number): bool
     {
-        if ($number % 2 === 0) { // even
+        if ($this->isDivisibleBy2($number)) {
             return false;
-        } elseif (strpos((string)$number, '0')) { // contains zeros
+        } elseif ($this->containsZeros($number)) {
             return false;
-        } elseif ($number < 0) { // negative
+        } elseif ($this->isNegative($number)) {
             return false;
-        } elseif ($number > 999 && $number < 9999) { // four digits
+        } elseif ($this->hasFourDigits($number)) {
             return false;
         }
 
         return true;
+    }
+
+    private function isDivisibleBy2($number): bool
+    {
+        return $number % 2 === 0;
+    }
+
+    private function containsZeros($number)
+    {
+        return strpos((string)$number, '0');
+    }
+
+    private function isNegative($number)
+    {
+        return $number < 0;
+    }
+
+    private function hasFourDigits($number): bool
+    {
+        return $number > 999 && $number < 9999;
     }
 }
