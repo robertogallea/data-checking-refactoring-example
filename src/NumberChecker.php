@@ -9,7 +9,6 @@ class NumberChecker
     public function execute($number): bool
     {
         $checks = [
-
             IsDivisibleBy2::class,
             ContainsZeros::class,
             IsNegative::class,
