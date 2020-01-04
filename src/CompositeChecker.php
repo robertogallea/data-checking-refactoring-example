@@ -6,12 +6,12 @@ namespace App;
 
 class CompositeChecker implements Check
 {
-    private array $checks = [
-        IsDivisibleBy2::class,
-        ContainsZeros::class,
-        IsNegative::class,
-        HasFourDigits::class
-    ];
+    private array $checks = [];
+
+    public function __construct(array $checks)
+    {
+        $this->checks = $checks;
+    }
 
     public function check($number): bool
     {

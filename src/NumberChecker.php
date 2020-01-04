@@ -8,6 +8,14 @@ class NumberChecker
 {
     public function execute($number): bool
     {
-        return (new CompositeChecker())->check($number);
+        $checks = [
+
+            IsDivisibleBy2::class,
+            ContainsZeros::class,
+            IsNegative::class,
+            HasFourDigits::class
+        ];
+
+        return (new CompositeChecker($checks))->check($number);
     }
 }
